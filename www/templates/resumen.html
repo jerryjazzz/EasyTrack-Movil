@@ -1,0 +1,46 @@
+<ion-view view-title="Estadísticas">
+<ion-content>
+
+	<span ng-if="data == ''">
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <img src="img/logoet.png">
+        <h2 style="white-space: normal;">Gráfico de móviles con más exceso de velocidad</h2>
+      </div>
+
+      <div class="item item-body">
+        <img class="full-image" src="img/nodata.png">
+      </div>
+      
+    </div>
+  </span>
+
+  <span ng-if="data != ''">
+
+    <div class="card">
+        <div class="item item-divider">
+            <center><p style="white-space: normal;"><b>Móviles con más exceso de velocidad</b><p><center>
+        </div>
+        <div class="item item-text-wrap" >
+            <canvas id="bar" class="chart chart-bar" data="data" labels="labels"></canvas>
+        </div>
+    </div>
+  </span>  
+</ion-content>
+</ion-view>
+
+<ion-tabs class="tabs-positive tabs-icon-left">
+         <!--<a class="tab-item" href="#/app/playlists">
+               <i class="icon ion-android-pin"></i>
+                      Posiciones
+         </a>-->
+         <a class="tab-item" href="#/app/perfil">
+               <i class="icon ion-person"></i>
+                     <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Perfil</span>
+         </a>
+         <a class="tab-item" href="#/app/salir">
+               <i class="icon ion-power"></i>
+                     <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
+         </a>
+</ion-tabs> 

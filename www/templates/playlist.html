@@ -1,0 +1,34 @@
+<ion-view view-title="Ultima posicion">
+  <ion-content>
+    <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" href="#/app/historico/{{playlist.dominio}}">
+            <i class="icon ion-stats-bars"></i>
+            <b>Historico</b>
+          </a>
+          <a class="tab-item" href="#/app/posicion/{{playlist.dominio}}">
+            <i class="icon ion-ios-location"></i>
+            <b>Solicitud de posicion</b>
+          </a>
+          <a class="tab-item" href="#/app/masdatos/{{playlist.dominio}}">
+            <i class="icon ion-ios-person"></i>
+            <b>Mas datos</b>
+          </a>
+  </div>
+	 <div id="mapaUnDominio"></div>
+  </ion-content>
+  
+           <ion-tabs class="tabs-positive tabs-icon-left">
+                <a class="tab-item" href="#/app/playlists">
+                  <i class="icon ion-android-pin"></i>
+                     <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Posiciones</span>
+                </a>
+                <a class="tab-item" href="#/app/perfil">
+                  <i class="icon ion-person"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Perfil</span>
+                </a>
+                <a class="tab-item" href="#/app/salir">
+                  <i class="icon ion-power"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
+                </a>
+            </ion-tabs> 
+</ion-view>            

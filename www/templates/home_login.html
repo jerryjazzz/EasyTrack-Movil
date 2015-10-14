@@ -1,0 +1,75 @@
+<ion-nav-bar>
+        <ion-nav-title>
+                <center>EasyTrack</center>
+        </ion-nav-title>
+</ion-nav-bar>
+        <ion-view>
+    <ion-content class="has-header has-footer" padding="true">
+<br>
+        <center><img src="img/logoet.png"></center>
+        <br>
+    
+        <script id="templates/form-errors.html" type="text/ng-template">  
+          <div class="form-error" ng-message="required">Este campo es requerido.</div>
+          <div class="form-error" ng-message="minlength">Debe tener al menos 5 caracteres.</div>
+          <div class="form-error" ng-message="maxlength">Debe tener menos de 50 caracteres.</div>
+        </script> 
+
+        <form name="signinForm" novalidate="" ng-submit="submit()">
+
+            <div class="list">
+              <label class="item item-input" 
+                     ng-class="{ 'has-error-lr' : signinForm.username.$invalid && signinForm.$submitted, 'valid-lr' : signinForm.username.$valid  && signinForm.$submitted}">
+                <span class="input-label">Usuario</span>
+                <input type="text"
+                       name="username"
+                       ng-model="data.username" 
+                       required ng-pattern="/^[a-zA-Z0-9\.]*$/">
+              </label>
+                
+                <div class="form-error" ng-show="signinForm.username.$error.pattern">Usuario Invalido</div>
+              <div class="form-errors" 
+                   ng-show="signinForm.username.$error && signinForm.$submitted"
+                   ng-messages="signinForm.username.$error"
+                   ng-messages-include="templates/form-errors.html">
+              </div>
+
+              <label class="item item-input" 
+                     ng-class="{ 'has-error-lr' : signinForm.password.$invalid  && signinForm.$submitted, 'valid-lr' : signinForm.password.$valid  && signinForm.$submitted}">
+                <span class="input-label">Password</span>
+                <input type="password"
+                       name="password"
+                       ng-model="data.password"
+                       required ng-pattern="/^[a-zA-Z0-9\.]*$/">
+              </label>
+              <div class="form-error" ng-show="signinForm.password.$error.pattern">Password Invalido</div>
+              <div class="form-errors" 
+                   ng-show="signinForm.password.$error && signinForm.$submitted"
+                   ng-messages="signinForm.password.$error"
+                   ng-messages-include="templates/form-errors.html">
+              </div>
+            </div>
+            <div class="padding">
+              <button class="button button-block button-positive" ng-disabled="signinForm.$invalid" type="submit">
+                Entrar
+              </button>
+            </div>
+
+          </form>
+        <br>
+<div class="card">
+                    <div class="item item-text-wrap">
+                        <center><div style="color:red"><b ng-bind="responseUser" class="ng-hide"></b></script><b ng-bind="responseUserInvalid" class="ng-show" ng-controller="salirCtrl"></b></div><center>
+                    </div>
+                </div>
+    </ion-content>
+</ion-view>
+<ion-footer-bar align-title="left" class="bar-positive">
+            <div class="buttons">
+                  <button class="button" ng-click="easymail()"><i class="icon ion-android-globe"></i></button>
+            </div>
+            <h1 class="title">EasyTrack</h1>
+            <div class="buttons">
+                <button class="button" ng-click="facebook()"><i class="icon ion-social-facebook"></i></button>
+            </div>
+</ion-footer-bar>

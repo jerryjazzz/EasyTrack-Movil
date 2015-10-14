@@ -1,0 +1,40 @@
+<ion-view view-title="Posiciones">
+          <ion-content class="has-header has-footer" padding="true">
+              	<br>
+              	<label class="item item-input">
+            		  <i class="icon ion-search placeholder-icon"></i>
+            		  <input type="search" placeholder="Buscar" ng-model="buscador">
+            	</label>
+            	<br>
+                <ion-list>
+            	<ion-item ng-repeat="playlist in playlists|filter:buscador|orderBy:'dominio'"  href="#/app/playlists/{{playlist.dominio}}">
+                    <div class="item item-thumbnail-left" style="border:none"><img ng-src="{{playlist.imgrumbo}}">
+                      <div >
+                        <p style="white-space: normal;"><b>{{playlist.dominio}}</b></p2>
+                        <p style="white-space: normal;">{{playlist.fecha}}</p>   
+                        <p style="white-space: normal;">{{playlist.posicion}}</p>
+                        <p style="white-space: normal;">{{playlist.velocidad}} Km/h</p>
+                       </div> 
+                    </div>    
+                  </ion-item>
+                </ion-list>
+        </ion-content>
+</ion-view>
+           <ion-tabs class="tabs-positive tabs-icon-left">
+                <a class="tab-item" href="#/app/mapa">
+    <i class="icon ion-map"></i>
+    <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Mapas</span>
+  </a>
+  <a class="tab-item" href="#/app/resumen">
+    <i class="icon ion-stats-bars"></i>
+    <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Resúmen</span>
+  </a>
+  <a class="tab-item" href="#/app/perfil">
+    <i class="icon ion-person"></i>
+    <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Perfil
+  </a>
+  <a class="tab-item" href="#/app/salir">
+    <i class="icon ion-power"></i>
+    <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
+  </a>
+</ion-tabs> 

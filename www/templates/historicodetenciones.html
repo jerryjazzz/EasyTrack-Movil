@@ -1,0 +1,53 @@
+<ion-view view-title="Detenciones">
+  <ion-content>
+
+  	<label class="item item-input">
+		  <i class="icon ion-search placeholder-icon"></i>
+		  <input type="search" placeholder="Buscar" ng-model="buscador">
+	</label>
+
+  <span ng-if="playlists == ''">
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <img src="img/logoet.png">
+        <h2 style="white-space: normal;">Historico de Detenciones</h2>
+      </div>
+
+      <div class="item item-body">
+        <img class="full-image" src="img/nodata.png">
+      </div>
+      
+    </div>
+  </span>
+
+<span ng-if="playlists != ''">
+    <ion-list>
+	<ion-item ng-repeat="playlist in playlists|filter:buscador|orderBy:'dominio'">
+        <a class="item item-icon-left" href="#">
+    	<i class="icon ion-android-car"></i>
+        <p style="white-space: normal;"><b>Inicio</b> {{playlist.fechaini}}</p>
+        <p style="white-space: normal;"><b>Fin</b> {{playlist.fechafin}}</p>
+        <p style="white-space: normal;"><b>Posicion</b> {{playlist.posicion}} km/hs</p>
+            <p style="white-space: normal;"><b>Con Ignición</b> {{playlist.hign}}</p>
+        <p style="white-space: normal;"><b>Sin Ignición</b> {{playlist.hdes}}</p>
+        <p style="white-space: normal;"><b>Total</b> {{playlist.htot}}</p></a>
+      </ion-item>
+    </ion-list>
+</span>    
+  </ion-content>
+</ion-view>
+<ion-tabs class="tabs-positive tabs-icon-left">
+                <!--<a class="tab-item" href="#/app/playlists">
+                  <i class="icon ion-android-pin"></i>
+                      Posiciones
+                </a>-->
+                <a class="tab-item" href="#/app/perfil">
+                  <i class="icon ion-person"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Perfil</span>
+                </a>
+                <a class="tab-item" href="#/app/salir">
+                  <i class="icon ion-power"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
+                </a>
+            </ion-tabs> 

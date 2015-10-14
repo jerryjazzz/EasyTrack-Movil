@@ -1,0 +1,90 @@
+<style type="text/css">
+	a:link
+	{
+		text-decoration:none;
+	}
+</style>
+<ion-view view-title="Perfil">
+	<ion-content padding="true">
+	<div class="item item-divider">
+    			<center>Datos de usuario</center>
+  		</div>
+		<div class="item item-avatar">
+    		<img src="http://secure.easytrack.net.ar/recursos/imagenes_cargadas/php/thumbnails/{{playlists.foto}}">
+    		<p><b>Nombre Completo:</b> {{playlists.descripcion}}</p>
+    		<p><b>Usuario:</b> {{playlists.usuario}}</p>
+    		<p><b>Email:</b> {{playlists.email}}</p>
+  		</div>
+  		<div class="item item-divider">
+    				<center>Cambiar datos de usuario</center>
+  		</div>
+  		<script id="templates/form-errors.html" type="text/ng-template">  
+          <div class="form-error" ng-message="required">Este campo es requerido.</div>
+          <div class="form-error" ng-message="minlength">Debe tener al menos 5 caracteres.</div>
+          <div class="form-error" ng-message="maxlength">Debe tener menos de 50 caracteres.</div>
+        </script> 
+		      <form role="form" name="form" padding="true" ng-submit="submit()">	
+					<div class="list">
+								<label class="item item-input" >
+								  <span class="input-label">Nombre Completo</span>
+								  	<input type="text"
+					                       name="nomCompleto"
+					                       ng-model="playlists.descripcion" 
+					                       required ng-pattern="/^[a-zA-Z0-9ñáéíóúü\.\s]*$/">
+								</label>
+								<div style="color:red" ng-show="form.nomCompleto.$error.pattern">Nombre inválido</div>
+								<label class="item item-input">
+								  <span class="input-label">Email</span>
+								  	<input type="email"
+					                       name="email"
+					                       ng-model="playlists.email" 
+					                       required ng-pattern="/^[a-zA-Z0-9@_\.]*$/">
+								</label>
+								<div style="color:red" ng-show="form.email.$error.pattern">Email Inválido</div>
+								<label class="item item-input">
+								  <span class="input-label">Contraseña</span>
+								  	<input type="password"
+					                       name="password"
+					                       ng-model="data.password"
+					                       required
+					                       ng-pattern="/^[a-zA-Z0-9\.]*$/">
+								</label>
+								<label class="item item-input">
+								  <span class="input-label">Repetir contraseña</span>
+								  	<input ng-model="passConfirm"
+								  	       name="passConfirm"
+					                       ng-confirm-field confirm-against="data.password"
+					                       type="password"
+					                       required 
+					                       ng-pattern="/^[a-zA-Z0-9\.]*$/">
+								</label>
+								<div ng-show="form.passConfirm.$dirty && form.passConfirm.$invalid">
+    							<span style="color:red" ng-show="form.passConfirm.$error.noMatch">Los campos no conciden</span>
+  								</div>
+					</div>
+					<button class="button button-block button-positive" ng-disabled="form.$invalid" type="submit">
+                			Guardar Cambios
+              		</button>
+				</form>
+              		<span ng-if="responseUpdate != 'Error'">
+              			<center><b style="color:green" ng-bind="responseUpdate"></b></center>
+              		</span>
+              		<span ng-if="responseUpdate =='Error'">
+              			<center><b style="color:red" ng-bind="responseUpdate"></b></center>
+              		</span>
+	</ion-content>	
+</ion-view>
+<ion-tabs class="tabs-positive tabs-icon-left">
+                <!--<a class="tab-item" href="#/app/playlists">
+                  <i class="icon ion-android-pin"></i>
+                      Posiciones
+                </a>-->
+                <a class="tab-item" href="#/app/perfil">
+                  <i class="icon ion-person"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Perfil</span>
+                </a>
+                <a class="tab-item" href="#/app/salir">
+                  <i class="icon ion-power"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
+                </a>
+            </ion-tabs> 

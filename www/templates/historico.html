@@ -1,0 +1,38 @@
+<ion-view view-title="Historicos">
+  <ion-content>
+	
+  <div class="item item-divider">
+    <center>Historicos</center>
+  </div>
+    <ion-list>
+	<ion-item>
+        <a class="item item-icon-left" href="#/app/historicoposiciones/{{playlist.dominio}}">
+    	     <i class="icon ion-compass"></i>
+            <p style="white-space: normal;"><b>Historico de posiciones</b>
+            </p></a>
+        <a class="item item-icon-left" href="#/app/historicovelocidad/{{playlist.dominio}}">
+           <i class="icon ion-ios-speedometer"></i>
+            <p style="white-space: normal;"><b>Historico de excesos de velocidad</b>
+            </p></a>
+        <a class="item item-icon-left" href="#/app/historicodetenciones/{{playlist.dominio}}">
+           <i class="icon ion-android-hand"></i>
+            <p style="white-space: normal;"><b>Historico de últimas detenciones</b>
+            </p></a>        
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+<ion-tabs class="tabs-positive tabs-icon-left">
+                <!--<a class="tab-item" href="#/app/playlists">
+                  <i class="icon ion-android-pin"></i>
+                      Posiciones
+                </a>-->
+                <a class="tab-item" href="#/app/perfil">
+                  <i class="icon ion-person"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Perfil</span>
+                </a>
+                <a class="tab-item" href="#/app/salir">
+                  <i class="icon ion-power"></i>
+                        <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
+                </a>
+            </ion-tabs> 

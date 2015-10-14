@@ -1,0 +1,11 @@
+{
+  "name": "Test_EasyTrack",
+  "app_id": "4b8958f0",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}
