@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/xampp/htdocs/EasyTrack-Argentina/plugins/cordova-plugin-device/src/blackberry10/index.js",
+        "C:/xampp/htdocs/EasyTrack-Argentina/plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+        "C:/xampp/htdocs/EasyTrack-Argentina/platforms/android/assets/www/plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "C:/xampp/htdocs/EasyTrack-Argentina/platforms/android/assets/www/plugins/cordova-plugin-console/www/logger.js"
+    ]
+}

@@ -31,3 +31,13 @@ html, body, #mapaUnDominio, #mapaTodosLosDominios {
  .scroll {
  	height: 100%;
  }
+
+ #informacion {
+    position: absolute;
+    z-index: 1000;
+    background-color: #F5F8F9;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #99D9FC;
+    margin: 0;
+ }

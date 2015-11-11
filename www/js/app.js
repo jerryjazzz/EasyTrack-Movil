@@ -5,17 +5,37 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-var db = null;
+/** Variable Global para instanciar la base de datos SQLite */
+var db = null; 
+/** Variable Global para pasar en diferentes Scope el ID usuario enviado desde el apirest */
 var userId = null;
+/**  */
 var username = null;
-var pass= null;  
+/** */
+var pass = null;  
+/** Variable global para guardar un dominio en particular y mandar como parametro al servicio*/
+var dominio = null; 
+/** Variable global para la creación de mapas */
+var map = null;
+/** Variable global para la creación de mapas */
+var vectorSource = null;
+/** Variable global para la creación de mapas */
+var vectorLayer = null;
+/** Variable global para la creación de iconFeatures*/
+var iconFeature = null;
+
+
+
 
 angular.module('starter', ['ng.confirmField','chart.js','ngMessages','ionic','ionic.service.core','ionic.service.push','ngCordova', 'starter.controllers'])
+
 
 .run(function($ionicPlatform, $ionicPopup, $http, $location, $rootScope) {
 
   $ionicPlatform.ready(function() {
     //verifricar Connection
+
+    /**  */
     if(window.Connection) {
                 if(navigator.connection.type == Connection.NONE) {
                     $ionicPopup.confirm({
@@ -45,12 +65,12 @@ angular.module('starter', ['ng.confirmField','chart.js','ngMessages','ionic','io
          if (window.cordova) {
             db = window.sqlitePlugin.openDatabase({ name: "easytrack.sqlite", androidDatabaseImplementation: 2, androidLockWorkaround: 1}); //device
             db.transaction(function(tx) {
-              tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, usuario VARCHAR, password VARCHAR)');
+              tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, usuario VARCHAR, password VARCHAR, userid INTEGER)');
             });
         }else{
             db = window.openDatabase("easytrack.sqlite", '1', 'easytrack', 1024 * 1024 * 100); // browser
             db.transaction(function(tx) {
-              tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, usuario VARCHAR, password VARCHAR)');
+              tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id_usuario INTEGER PRIMARY KEY AUTOINCREMENT, usuario VARCHAR, password VARCHAR, userid INTEGER)');
             });
         }
 
@@ -249,4 +269,3 @@ angular.module('starter', ['ng.confirmField','chart.js','ngMessages','ionic','io
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home_login');
 });
-

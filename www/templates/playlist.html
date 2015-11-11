@@ -1,4 +1,12 @@
+
+<script>
+
+$(document).ready(function() {
+  $( "#informacion" ).hide();
+});
+</script>
 <ion-view view-title="Ultima posicion">
+
   <ion-content>
     <div class="item tabs tabs-secondary tabs-icon-left">
           <a class="tab-item" href="#/app/historico/{{playlist.dominio}}">
@@ -7,14 +15,32 @@
           </a>
           <a class="tab-item" href="#/app/posicion/{{playlist.dominio}}">
             <i class="icon ion-ios-location"></i>
-            <b>Solicitud de posicion</b>
+            <b>Pedido posición</b>
           </a>
           <a class="tab-item" href="#/app/masdatos/{{playlist.dominio}}">
             <i class="icon ion-ios-person"></i>
             <b>Mas datos</b>
           </a>
+          <a class="tab-item" href="javascript:$( '#informacion' ).toggle();">
+            <i class="icon ion-ios-person"></i>
+            <b>Info</b>
+          </a>
+
   </div>
-	 <div id="mapaUnDominio"></div>
+
+          <div id="informacion">
+                  <p>
+                    <br>{{playlist.dominio}}
+                    <br>{{playlist.fecha}}
+                    <br>{{playlist.posicion}}
+                  </p>
+          </div>
+
+
+	<div id="mapaUnDominio">
+    
+  </div>
+
   </ion-content>
   
            <ion-tabs class="tabs-positive tabs-icon-left">
@@ -31,4 +57,4 @@
                         <span style="color: rgb(255, 255, 255); font-size: 1.3em;">Salir</span>
                 </a>
             </ion-tabs> 
-</ion-view>            
+</ion-view>
