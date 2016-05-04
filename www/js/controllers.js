@@ -11,15 +11,15 @@ angular.module('starter.controllers', [])
 $scope.data = {};
 
     $scope.submit = function(){
-        var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+        var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
         var datos = $scope.data.username + ',' + $scope.data.password;
         var usuario = $scope.data.username;
         var password = $scope.data.password;
         $http.post(link, {datos: datos, funcion :'login'}).then(function (res){
-            console.log("Respuesta "  + res.data.login['mensaje']);
+            //console.log("Respuesta "  + res.data.login['mensaje']);
             if (res.data.login['validacion'] == 'ok') {
                   userId = res.data.login['user'];
-                  //console.log("Dentro de submit " + userId);
+                  $scope.responseUser = '';
                   //console.log("object db dentro de submit " + db);
                   db.transaction(function(tx) {
                       tx.executeSql("INSERT INTO usuarios (usuario, password, userid) VALUES (?,?,?)", [usuario, password, userId], function(tx, res) {
@@ -29,12 +29,12 @@ $scope.data = {};
                     });
                     $location.path('/app/playlists');
               }else{
-                  $scope.responseUserInvalid = res.data.mensaje;
+                  //console.log(res.data.login['mensaje']);
+                  $scope.responseUser = res.data.login['mensaje'];
                     db.transaction(function(tx) {
                     tx.executeSql("DELETE FROM usuarios;", [], function(tx, res) {
                     console.log("registros eliminados");
                     $ionicHistory.clearCache();
-                  $location.path('/app/home_login');
               });
               });
             }
@@ -62,10 +62,11 @@ $scope.data = {};
               }else{
                 console.log("La consulta no trajo resultados.");
               }
+            }, function (err) {
+              console.log("Hubo un error en la consulta");
             });
           });
   }, 4000);
-
 
     $scope.easymail=function(){
      window.open('http://www.easymail.net.ar/', '_blank', 'location=yes');
@@ -75,15 +76,13 @@ $scope.data = {};
   };
 })
 
-
-
 .controller('PlaylistsCtrl', function($scope, $http, $location, $interval) {
     db.transaction(function(tx) {
             tx.executeSql("select * from usuarios;", [], function(tx, res) {
               if(res.rows.length > 0) {
                 userId = res.rows.item(0).userid;
                 console.log("Usuario: " + res.rows.item(0).usuario + " Password: " + res.rows.item(0).password + " userId: " + userId);
-                    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+                    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
                     var datos = userId;
                     console.log("ID usuario " + userId);
                     $http.post(link, {datos: datos, funcion: 'listaMoviles'}).then(function (res){
@@ -98,19 +97,19 @@ $scope.data = {};
           });
       //$interval(actualizar($scope), 5000);
        $scope.actualizar = function(){
-           var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
-                    var datos = userId;
-              $http.post(link, {datos: datos, funcion: 'listaMoviles'}).then(function (res){
-                        //console.log(res.data);
-             $scope.playlists = res.data.lista;
-        });
-          };
-    $interval($scope.actualizar, 60000);
+            var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
+            var datos = userId;
+            $http.post(link, {datos: datos, funcion: 'listaMoviles'}).then(function (res){
+              //console.log(res.data);
+              $scope.playlists = res.data.lista;
+            });
+        };
+      $interval($scope.actualizar, 60000);
 })
 
 .controller('mapaCtrl', function($scope, $stateParams, $http, $interval) {
   
-  var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+  var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
   var datos = userId;
     
   $http.post(link, {datos: datos, funcion: 'listamoviles'}).then(function (res){
@@ -180,9 +179,7 @@ $scope.data = {};
 
    $scope.act = function(){
 
-
-
-      var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+      var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
       var datos = userId;
     
       $http.post(link, {datos: datos, funcion: 'listamoviles'}).then(function (res){
@@ -217,9 +214,10 @@ $scope.data = {};
     $scope.$on('$destroy', function () { $interval.cancel(interPromise);});
 
 })
+
 .controller('PlaylistCtrl', function($scope, $stateParams, $http, $ionicPlatform, $interval) {
 
-  var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+  var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
   var datos = $stateParams.playlistId + ',' + userId;
   $http.post(link, {datos: datos, funcion: 'mapaDominio'}).then(function (res){
   $scope.playlist = res.data.movil[0];
@@ -276,7 +274,7 @@ $scope.data = {};
 
   $scope.actu = function(){
   
-  var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+  var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
   var datos = $stateParams.playlistId + ',' + userId;
   $http.post(link, {datos: datos, funcion: 'mapaDominio'}).then(function (res){
   $scope.playlist = res.data.movil[0];
@@ -315,7 +313,7 @@ $scope.data = {};
 })
 
 .controller('HistoricoCtrl', function($scope, $http, $stateParams) {
-    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
     dominio = $stateParams.playlistId;
     var datos = $stateParams.playlistId + ',' + userId;
     $http.post(link, {datos: datos, funcion: 'historico'}).then(function (res){
@@ -325,7 +323,7 @@ $scope.data = {};
 })
 
 .controller('HistoricoPosicionesCtrl', function($scope, $http, $stateParams, $ionicLoading, $timeout) {
-    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
     dominio = $stateParams.playlistId;
     var datos = dominio + ',' + userId;
     $http.post(link, {datos: datos, funcion: 'historicoPosiciones'}).then(function (res){
@@ -345,8 +343,9 @@ $scope.data = {};
   }, 2000);
   });
 })
+
 .controller('HistoricoVelocidadCtrl', function($scope, $http, $stateParams, $ionicLoading, $timeout) {
-    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
     var datos = $stateParams.playlistId + ',' + userId;
     $http.post(link, {datos: datos, funcion: 'HistoricoVelocidad'}).then(function (res){
     // Setup the loader
@@ -365,8 +364,9 @@ $scope.data = {};
   }, 2000);
   });
 })
+
 .controller('HistoricoDetencionesCtrl', function($scope, $http, $stateParams, $ionicLoading, $timeout) {
-    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
     var datos = $stateParams.playlistId + ',' + userId;
     $http.post(link, {datos: datos, funcion: 'HistoricoDetenciones'}).then(function (res){
     // Setup the loader
@@ -387,7 +387,7 @@ $scope.data = {};
 })
 
 .controller('PosicionCtrl', function($scope, $http, $stateParams, $location) {
-    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
     var datos = $stateParams.playlistId + ',' + userId;
     $http.post(link, {datos: datos, funcion: 'solicitudPosicion'}).then(function (res){
     $scope.playlists = res.data;
@@ -396,7 +396,7 @@ $scope.data = {};
 
 .controller('MasDatosCtrl', function($scope, $stateParams, $http) {
   
-  var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+  var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
   var datos = $stateParams.playlistId + ',' + userId;
   $http.post(link, {datos: datos, funcion: 'masDatos'}).then(function (res){
   $scope.playlist = res.data.chofer[0];
@@ -405,7 +405,7 @@ $scope.data = {};
 
 .controller('EstadisticaCtrl', ['$scope', '$timeout', '$http', '$ionicLoading', function ($scope, $timeout, $http, $ionicLoading) {
       
-    var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+    var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
     var datos = $scope.responseUser;
     $http.post(link, {datos: datos, funcion: 'estVelocidad'}).then(function (res){
     // Setup the loader
@@ -438,8 +438,9 @@ $scope.data = {};
   }, 2000);
   });
 }])
+
 .controller('PerfilCtrl', function($scope, $stateParams, $http, $location) {
-  var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+  var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
   var datos = userId;
   $http.post(link, {datos: datos, funcion: 'perfil'}).then(function (res){
   $scope.playlists = res.data.user[0];
@@ -448,7 +449,7 @@ $scope.data = {};
   $scope.data = {};
   
     $scope.submit = function(){
-        var link = 'http://mobile.etrk.com.ar/easytrack_web_service/apirestCopia.php';
+        var link = 'http://mobile.easymail.net.ar/easytrack_web_service/apirestCopia.php';
         var datos = userId + ',' + $scope.playlists.descripcion + ',' + $scope.playlists.email + ',' + $scope.data.password;
         
         $http.post(link, {datos: datos, funcion :'updateUser'}).then(function (res){

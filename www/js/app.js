@@ -1,20 +1,18 @@
-// Ionic Starter App
-
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
 /** Variable Global para instanciar la base de datos SQLite */
-var db = null; 
+var db = null;
 /** Variable Global para pasar en diferentes Scope el ID usuario enviado desde el apirest */
 var userId = null;
 /**  */
 var username = null;
 /** */
-var pass = null;  
+var pass = null;
 /** Variable global para guardar un dominio en particular y mandar como parametro al servicio*/
-var dominio = null; 
+var dominio = null;
 /** Variable global para la creación de mapas */
 var map = null;
 /** Variable global para la creación de mapas */
@@ -24,11 +22,7 @@ var vectorLayer = null;
 /** Variable global para la creación de iconFeatures*/
 var iconFeature = null;
 
-
-
-
 angular.module('starter', ['ng.confirmField','chart.js','ngMessages','ionic','ionic.service.core','ionic.service.push','ngCordova', 'starter.controllers'])
-
 
 .run(function($ionicPlatform, $ionicPopup, $http, $location, $rootScope) {
 
